@@ -27,8 +27,9 @@ services:
       - DB_NAME=$MYSQLDB_DATABASE
       - DB_PORT=$MYSQLDB_DOCKER_PORT
       - DB_ROOT_HOST=$MYSQL_ROOT_HOST
+      - DB_RANDOM_ROOT_PASSWORD="yes"
     stdin_open: true
     tty: true
-
+    
 volumes: 
   db:

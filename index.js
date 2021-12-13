@@ -25,10 +25,8 @@ app.get('/todos/delete/:id', todoController.delete);
 app.get('/todos/update/:id/:state', todoController.update);
 
 app.use(express.static("public"));
-//app.listen(3000);
 
-PORT = process.env.NODE_DOCKER_PORT || 8080;
-//PORT = 8080
+PORT = process.env.NODE_DOCKER_PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
