@@ -1,3 +1,7 @@
 For mysql:
 - npm install --save sequelize
 - npm install --save mysql2
+
+For postgres
+- npm install --save pg pg-hstore
+- npm install --save pg
