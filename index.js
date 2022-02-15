@@ -21,7 +21,7 @@ app.get('/about', homeController.about);
 app.get('/todos', todoController.list);
 app.get('/todosOrdered', todoController.listOrdered);
 app.post('/todos', todoController.add);
-app.get('/todos/delete/:id', todoController.delete);
+app.get('/todos/delete/:id/:image', todoController.delete);
 app.get('/todos/update/:id/:state', todoController.update);
 
 app.use(express.static("public"));

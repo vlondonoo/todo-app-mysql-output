@@ -6,8 +6,13 @@ services:
     restart: unless-stopped
     env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_SECRET_PASSWORD
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
+      # - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - DB_ROOT_HOST=$MYSQL_ROOT_HOST
+      - MYSQL_USER=$MYSQLDB_USER
+      - MYSQL_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
@@ -21,13 +26,11 @@ services:
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
-      - DB_HOST=mysqldb
+      - DB_HOST=$HOST
       - DB_USER=$MYSQLDB_USER
       - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
       - DB_NAME=$MYSQLDB_DATABASE
-      - DB_PORT=$MYSQLDB_DOCKER_PORT
-      - DB_ROOT_HOST=$MYSQL_ROOT_HOST
-      - DB_RANDOM_ROOT_PASSWORD="yes"
+      - DB_PORT=$MYSQLDB_DOCKER_PORT    
     stdin_open: true
     tty: true
     

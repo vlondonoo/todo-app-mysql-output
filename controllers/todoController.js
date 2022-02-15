@@ -2,7 +2,7 @@ const { TodoModel } = require('../db/sequelize');
 const fs = require('fs');
 const path = require('path');
 const { Storage } = require('@google-cloud/storage');
-const { format } = require('util');
+const { format } = require('util');;
 
 const serviceKey = path.join(__dirname, '../todoapp-340315-afea0b69e558.json');
 let gcStorage = new Storage({
@@ -10,7 +10,6 @@ let gcStorage = new Storage({
   projectId: 'todoapp-340315'
 });
 const bucket = gcStorage.bucket('todo-images');
-let fileName = '';
 
 exports.list = async function (req, res) {
   const todos = await TodoModel.findAll();
@@ -50,34 +49,26 @@ exports.add = async (req, res) => {
     })
     .end(buffer);
 
-  // Local save
-  if (fileToUpload) {
-    const oldpath = fileToUpload.path;
-    const dirPath = path.join(__dirname.replace('controllers', ''), '/public/uploads/');
-    newpath = dirPath + newTodo.id + ".jpg";
-    fs.rename(oldpath, newpath, function (err) {
-      if (err) throw err;
-    });
-    newTodo.image = newTodo.id + ".jpg";
-    await newTodo.save({ fields: ['image'] });
-  }
+  newTodo.image = blob.name;
+  await newTodo.save({ fields: ['image'] });
 
   return res.redirect("/todos");
 };
 
 exports.delete = async (req, res) => {
+
+
+  const { id, image } = req.params;
   // bucket
   // const fileName = 'Screenshot_2022-01-30_021753.png';
 
-  bucket.file(this.fileName)
+  bucket.file(image)
     .delete()
     .catch(console.error);
 
-  console.log(`gs://${bucket.name}/${this.fileName} deleted`);
-
+  console.log(`gs://${bucket.name}/${image} deleted`);
 
   // local save
-  const id = req.params.id;
   await TodoModel.destroy({ where: { id: id } });
   const imagePath = path.join(__dirname.replace('controllers', ''), '/public/uploads/');
   newpath = imagePath + id + ".jpg";
