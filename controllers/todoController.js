@@ -57,10 +57,7 @@ exports.add = async (req, res) => {
 
 exports.delete = async (req, res) => {
 
-
   const { id, image } = req.params;
-  // bucket
-  // const fileName = 'Screenshot_2022-01-30_021753.png';
 
   bucket.file(image)
     .delete()
