@@ -1,12 +1,11 @@
 const Sequelize = require('sequelize');
 const TodoSequelize = require('../models/todo');
-const dotenv = require('dotenv');
-dotenv.config();
+const { DATABASE_NAME, USERNAME, PASSWORD, HOST, DIALECT } = require('../constants');
 
 
-const sequelize = new Sequelize(process.env.MYSQLDB_DATABASE, process.env.MYSQLDB_USER, process.env.MYSQLDB_ROOT_PASSWORD, {
-  host: process.env.HOST,
-  dialect: process.env.DIALECT,
+const sequelize = new Sequelize(DATABASE_NAME, USERNAME, PASSWORD, {
+  host: HOST,
+  dialect: DIALECT,
   pool: {
     max: 10,
     min: 0,

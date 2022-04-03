@@ -1,3 +1,8 @@
 For mysql:
 - npm install --save sequelize
 - npm install --save mysql2
+
+Access to GCP DB
+- sudo docker exec -it {container_id} bash
+- mysql -u root -p  //root root
+- show databases;
