@@ -2,7 +2,28 @@ For mysql:
 - npm install --save sequelize
 - npm install --save mysql2
 
-Access to GCP DB
+For postgres
+- npm install --save sequelize
+- npm install --save pg
+- npm install --save postgres
+
+Access to GCP MySQL DB
 - sudo docker exec -it {container_id} bash
 - mysql -u root -p  //root root
 - show databases;
+
+Access to GCP Postgres DB
+docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+
+- sudo docker exec -it {container_id} bash
+- psql -U postgres
+- \l
+
+    Connect to database tododb
+    - \c tododb  
+
+    check tables
+    - \d
+    - TABLE todos;
+
+    -\q  --> exit
