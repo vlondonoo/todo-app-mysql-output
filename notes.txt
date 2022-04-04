@@ -13,11 +13,17 @@ Access to GCP MySQL DB
 - show databases;
 
 Access to GCP Postgres DB
+
 docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
 
-- sudo docker exec -it {container_id} bash
-- psql -U postgres
-- \l
+    get into container
+    - sudo docker exec -it {container_id} bash
+
+    Access postges
+    - psql -U postgres
+    
+    list databases
+    - \l
 
     Connect to database tododb
     - \c tododb  
