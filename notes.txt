@@ -13,7 +13,7 @@ Access to GCP MySQL DB
 - show databases;
 
 Access to GCP Postgres DB
-
+sudo docker pull postgres:14.1-alpine
 docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
 
     get into container
